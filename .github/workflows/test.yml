@@ -21,7 +21,7 @@ jobs:
       - name: Get playwright version from package.json
         id: get_playwright_version
         run: |
-          echo "::set-output name=playwright_version::$(node -p "require('./package.json').devDependencies['playwright-core']")"
+          echo "playwright_version=$(node -p "require('./package.json').devDependencies['playwright-core']")" >> "$GITHUB_OUTPUT"
       
       - run: npx playwright@${{ steps.get_playwright_version.outputs.playwright_version }} install --with-deps chromium
       
