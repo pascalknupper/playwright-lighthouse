@@ -16,12 +16,12 @@ jobs:
           node-version: '18'
           cache: 'npm'
       
-      - run: npm ci
+      - run: npm install
       
       - name: Get playwright version from package.json
         id: get_playwright_version
         run: |
-          echo "playwright_version=$(node -p "require('./package.json').devDependencies['playwright-core']")" >> "$GITHUB_OUTPUT"
+          echo "playwright_version=$(node -p "require('./package.json').devDependencies['playwright-core']".replace('^', '')")" >> "$GITHUB_OUTPUT"
       
       - run: npx playwright@${{ steps.get_playwright_version.outputs.playwright_version }} install --with-deps chromium
       
