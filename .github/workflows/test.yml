@@ -21,7 +21,7 @@ jobs:
       - name: Determine playwright version from package.json
         id: get_playwright_version
         run: |
-          playwright_version=$(jq -r '.devDependencies["@axe-core/playwright"]' package.json | sed 's/\^//g')
+          playwright_version=$(jq -r '.devDependencies["playwright-core"]' package.json | sed 's/\^//g')
           echo "Playwright version: $playwright_version"
           echo "playwright_version=$playwright_version" >> $GITHUB_OUTPUT
       
